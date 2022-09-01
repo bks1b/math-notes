@@ -1,0 +1,44 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": ["@typescript-eslint", "import"],
+    "rules": {
+        "indent": ["error", 4, { "ignoredNodes": ["TemplateLiteral > *"] }],
+        "linebreak-style": ["error", "windows"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "no-empty": ["error", { "allowEmptyCatch": true }],
+        "no-sparse-arrays": "off",
+        "no-case-declarations": "off",
+        "@typescript-eslint/ban-types": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/member-delimiter-style": ["error", { "singleline": { "requireLast": true } }],
+        "import/order": [
+            "error",
+            { "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"] }
+        ],
+        "import/no-unresolved": "off",
+        "comma-dangle": ["error", "always-multiline"]
+    },
+    "settings": {
+        "import/resolver": {
+            "node": { "extensions": [".ts"] }
+        }
+    }
+}
