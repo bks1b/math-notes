@@ -5,8 +5,7 @@
   "author": "bks1b",
   "scripts": {
     "test": "set NODE_ENV=development && tsc & node dist",
-    "lint": "eslint src --fix",
-    "postinstall": "node node_modules/.bin/tsc & webpack"
+    "lint": "eslint src --fix"
   },
   "dependencies": {
     "dotenv": "^16.0.1",
