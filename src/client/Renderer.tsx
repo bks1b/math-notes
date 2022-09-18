@@ -33,7 +33,7 @@ const Frame = ({ text, name, bools }: { text: string[]; name: string; bools: Boo
                         <button onClick={() => {
                             shown[i] = !shown[i];
                             setShown([...shown]);
-                        }}>{x[1] === 'der' ? 'Deriváció' : x[1] === 'src' ? 'Forrás' : bools.thm ? 'Bizonyítás' : 'Megoldás'} {shown[i] ? 'elrejtése' : 'megjelenítése'}</button>
+                        }}>{x[1] === 'der' ? 'Levezetés' : x[1] === 'src' ? 'Forrás' : bools.thm ? 'Bizonyítás' : 'Megoldás'} {shown[i] ? 'elrejtése' : 'megjelenítése'}</button>
                         {shown[i] ? <ExtendedParser text={x[0].join('\n')}/> : ''}
                     </div>)
             }
