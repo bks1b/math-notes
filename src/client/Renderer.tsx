@@ -16,6 +16,7 @@ const textOptions: TextOptions = {
     extended: (x: string) => {
         const math = x.match(/^@(.+?)@/);
         if (math) return [<AsciiMath inline text={math[1]}/>, math[0].length];
+        if (x.startsWith('QEDbox')) return ['■', 6];
     },
 };
 
