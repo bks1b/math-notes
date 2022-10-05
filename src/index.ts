@@ -11,8 +11,10 @@ express()
     .use(getRouter({
         dashboard: { password: process.env.PASSWORD! },
         database: { uri: process.env.MONGO_URI!, name: 'math', rootName: 'Root' },
-        head: '<link rel="stylesheet" href="/style.css">',
         modulePath: process.env.NODE_ENV === 'development' ? undefined : 'node_modules/react-documents',
-        parser: true,
+        html: {
+            head: '<link rel="stylesheet" href="/style.css">',
+            parser: true,
+        },
     }))
     .listen(PORT, () => console.log('Listening on port', PORT));
