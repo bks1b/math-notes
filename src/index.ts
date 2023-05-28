@@ -13,8 +13,9 @@ express()
         database: { uri: process.env.MONGO_URI!, name: 'math', rootName: 'Root' },
         modulePath: process.env.NODE_ENV === 'development' ? undefined : 'node_modules/react-documents',
         html: {
-            head: '<link rel="stylesheet" href="/style.css">',
+            head: '<link rel="stylesheet" href="/style.css"><link rel="manifest" href="/manifest.json">',
             parser: true,
         },
+        serviceWorker: { initialCache: ['/style.css', '/manifest.json'] },
     }))
     .listen(PORT, () => console.log('Listening on port', PORT));
