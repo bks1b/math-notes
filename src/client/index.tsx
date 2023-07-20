@@ -54,4 +54,6 @@ const Renderer = (props: { text: string; name: string; }) => <>
     }}/>
 </>;
 
-createRoot(document.getElementById('root')!).render(<Documents title='Matek' Renderer={Renderer} padding/>);
+const root = document.getElementById('root')!;
+
+createRoot(root).render(<Documents title='Matek' Renderer={Renderer} rootElement={root} padding/>);
