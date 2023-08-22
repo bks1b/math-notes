@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Documents } from 'react-documents/dist/src/client';
-import { Parser, Elements, Bools, AsciiMath, TextOptions } from 'react-documents/dist/src/parser';
+import { Parser, Elements, AsciiMath, TextOptions } from 'react-documents/dist/src/parser';
 
 const textOptions: TextOptions = {
     groupingChars: ['{', '}'],
@@ -23,12 +23,13 @@ const splitSections = (lines: string[]) => {
         : [[lines, '']]) as [string[], string][];
 };
 
-const Frame = ({ text, name, bools }: { text: string[]; name: string; bools: Bools; }) => {
+const Frame = ({ text, name }: { text: string[]; name: string; }) => {
     const [shown, setShown] = useState([]);
     const sections = splitSections(text);
+    const isExercise = window.location.pathname.split('/')[1] === 'Feladatok';
     return <div className='frameContainer'>
         <div className='frame'>
-            <div className='h2'>{name || (bools.thm ? 'Tétel' : bools.def ? 'Definíció' : 'Feladat')}</div>
+            <div className='h2'>{name || (isExercise ? 'Feladat' : 'Tétel')}</div>
             <ExtendedParser text={sections[0][0].join('\n')}/>
             {
                 sections
@@ -37,7 +38,7 @@ const Frame = ({ text, name, bools }: { text: string[]; name: string; bools: Boo
                         <button onClick={() => {
                             shown[i] = !shown[i];
                             setShown([...shown]);
-                        }}>{x[1] === 'der' ? 'Levezetés' : x[1] === 'src' ? 'Forrás' : bools.thm ? 'Bizonyítás' : 'Megoldás'} {shown[i] ? 'elrejtése' : 'megjelenítése'}</button>
+                        }}>{x[1] === 'der' ? 'Levezetés' : x[1] === 'src' ? 'Forrás' : isExercise ? 'Megoldás' : 'Bizonyítás'} {shown[i] ? 'elrejtése' : 'megjelenítése'}</button>
                         {shown[i] ? <ExtendedParser text={x[0].join('\n')}/> : ''}
                     </div>)
             }
@@ -50,7 +51,7 @@ const ExtendedParser = (props: { text: string; elements?: Elements; }) => <Parse
 const Renderer = (props: { text: string; name: string; }) => <>
     <div style={{ justifyContent: 'center', textAlign: 'center' }} className='h1'>{props.name}</div>
     <ExtendedParser text={props.text} elements={{
-        frame: { render: (x, args, bools) => <Frame text={x} name={args.name} bools={bools}/>, closingTag: true },
+        frame: { render: (x, args) => <Frame text={x} name={args.name}/>, closingTag: true },
     }}/>
 </>;
 
