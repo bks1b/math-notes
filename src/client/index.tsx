@@ -46,7 +46,10 @@ const Frame = ({ text, name }: { text: string[]; name: string; }) => {
     </div>;
 };
 
-const ExtendedParser = (props: { text: string; elements?: Elements; }) => <Parser text={props.text} textOptions={textOptions} fallbacks={[['text'], ['math']]} elements={{ ...props.elements || {} }}/>;
+const ExtendedParser = (props: { text: string; elements?: Elements; }) => <Parser text={props.text} textOptions={textOptions} fallbacks={[['text'], ['math']]} elements={{
+    img: { render: x => <img src={x[0]} className='image'/> },
+    ...props.elements || {},
+}}/>;
 
 const Renderer = (props: { text: string; name: string; }) => <>
     <div style={{ justifyContent: 'center', textAlign: 'center' }} className='h1'>{props.name}</div>

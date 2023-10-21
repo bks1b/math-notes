@@ -12,12 +12,18 @@
     border: 1px solid #3e67fa;
     border-radius: 10px;
     min-width: 55%;
-    max-height: 400px;
+    max-height: 600px;
     overflow: auto;
 }
 
 .frameSection:not(:last-child) {
     margin-bottom: 8px;
+}
+
+.image {
+    display: block;
+    margin: 0px auto;
+    max-width: min(400px, 100%);
 }
 
 .renderedContainer {
